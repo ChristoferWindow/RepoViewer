@@ -14,6 +14,7 @@ use MyCLabs\Enum\Enum;
  * @method static GitHubEnums GITHUB_USERS_URL()
  * @method static GitHubEnums GITHUB_REPOS_URL()
  * @method static GitHubEnums GITHUB_FORKS_URL()
+ * @method static GitHubEnums GITHUB_LANGUAGES_URL()
  */
 class GitHubEnums extends Enum
 {
@@ -21,4 +22,5 @@ class GitHubEnums extends Enum
     private const GITHUB_USERS_URL = 'users';
     private const GITHUB_REPOS_URL = 'repos';
     private const GITHUB_FORKS_URL = 'forks';
+    private const GITHUB_LANGUAGES_URL = 'languages';
 }

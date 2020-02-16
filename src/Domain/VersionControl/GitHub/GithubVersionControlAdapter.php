@@ -28,9 +28,11 @@ class GithubVersionControlAdapter extends VersionControlAdapter
 
         $response = [];
         foreach ($request as $item) {
+            $owner = $this->getOwnerData($item['owner']['login'], $item['owner']['avatar_url']);
+
             $response[] = [
                 'name' => $item['name'],
-                'owner' => $item['owner']['login'],
+                'owner' => $owner,
                 'fork' => $item['fork'],
                 'forksCount' => $item['forks_count'],
                 'language' => $item['language']
@@ -49,7 +51,6 @@ class GithubVersionControlAdapter extends VersionControlAdapter
             $repoName,
         ]);
 
-
         $request =  $this->apiClient->request('GET', $url)->toArray();
 
         $owner = $this->getOwnerData($request['owner']['login'], $request['owner']['avatar_url']);
@@ -58,7 +59,7 @@ class GithubVersionControlAdapter extends VersionControlAdapter
         $parent = [];
 
         if ($fork) {
-            $parent = $this->getParentData($request['name'], $request['owner']['login']);
+            $parent = $this->getParentData($request['name'], $request['parent']['owner']['login']);
         }
 
         $response = [
@@ -83,10 +84,7 @@ class GithubVersionControlAdapter extends VersionControlAdapter
 
         $response = [];
         foreach ($request as $item) {
-            $owner = [
-                'owner_login' => $item['owner']['login'],
-                'avatar_url' => $item['owner']['avatar_url'],
-            ];
+            $owner = $this->getOwnerData($item['owner']['login'], $item['owner']['avatar_url']);
 
             $response[] = [
                 'name' => $item['name'],
@@ -95,9 +93,6 @@ class GithubVersionControlAdapter extends VersionControlAdapter
         }
 
         return $response;
-    }
-    public function getParent(string $userName, string $repoName):array {
-
     }
 
     public function getLanguages(string $userName, string $repoName): array
@@ -134,8 +129,8 @@ class GithubVersionControlAdapter extends VersionControlAdapter
     private function getParentData(string $userName, string $repoName)
     {
         return [
-            'name' => $userName,
-            'ownerLogin' => $repoName,
+            'name' => $repoName,
+            'ownerLogin' => $userName,
         ];
     }
 

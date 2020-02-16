@@ -23,7 +23,6 @@ abstract class VersionControlAdapter
     public function getRepos(string $userName):array{}
     public function getRepo(string $userName, string $repoName):array{}
     public function getForks(string $userName, string $repoName):array{}
-    public function getParent(string $userName, string $repoName):array{}
     public function getLanguages(string $userName, string $repoName):array{}
     public function createUrl(array $urlParts):string
     {

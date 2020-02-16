@@ -1,6 +1,6 @@
 import React from 'react';
 import RepoHeader from './RepoHeader';
-import ReopDetails from './RepoDetails';
+import RepoDetails from './RepoDetails';
 
 class Repo extends React.Component {
     render(){

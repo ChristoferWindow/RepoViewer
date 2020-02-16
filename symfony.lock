@@ -20,6 +20,9 @@
     "doctrine/lexer": {
         "version": "1.0.2"
     },
+    "dusank/knapsack": {
+        "version": "10.0.0"
+    },
     "friendsofsymfony/rest-bundle": {
         "version": "2.2",
         "recipe": {
@@ -54,6 +57,9 @@
             "config/packages/jms_serializer.yaml",
             "config/packages/prod/jms_serializer.yaml"
         ]
+    },
+    "myclabs/php-enum": {
+        "version": "1.7.6"
     },
     "php": {
         "version": "7.1"
@@ -215,6 +221,9 @@
     "symfony/polyfill-php73": {
         "version": "v1.14.0"
     },
+    "symfony/process": {
+        "version": "v4.4.4"
+    },
     "symfony/routing": {
         "version": "4.2",
         "recipe": {
@@ -243,6 +252,15 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.4"
+    },
+    "symfony/web-server-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
+        }
     },
     "symfony/yaml": {
         "version": "v4.4.4"

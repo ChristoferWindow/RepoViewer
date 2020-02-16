@@ -20,19 +20,19 @@ class VersionControlService
         $this->versionControlAdapterFactory = $versionControlAdapterFactory;
     }
 
-    public function getRepos(VersionControlQueryCommand $command): array
+    public function getRepos(VersionControlQuery $command): array
     {
         $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
         return $adapter->getRepos($command->getUserName());
     }
 
-    public function getRepo(VersionControlQueryCommand $command): array
+    public function getRepo(VersionControlQuery $command): array
     {
         $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
         return $adapter->getRepo($command->getUserName(), $command->getRepoName());
     }
 
-    public function getForks(VersionControlQueryCommand $command): array
+    public function getForks(VersionControlQuery $command): array
     {
         $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
         return $adapter->getForks($command->getUserName(), $command->getRepoName());

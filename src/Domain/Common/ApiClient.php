@@ -1,11 +1,15 @@
 <?php
 
-use Psr\Http\Message\ResponseInterface;
+declare(strict_types=1);
+
+namespace App\Domain\Common;
+
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * Interface ApiClient
  */
 interface ApiClient
 {
-    public function query(string $url, string $method): ResponseInterface;
+    public function request(string $method, string $url, array $options = []): ResponseInterface;
 }

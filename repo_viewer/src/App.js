@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import './components/repo_viewer/Repo';
+import Repo from "./components/repo_viewer/Repo";
 
 function App() {
   return (

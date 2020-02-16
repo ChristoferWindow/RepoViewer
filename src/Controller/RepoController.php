@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Domain\VersionControl\VersionControlQueryCommand;
+use App\Domain\VersionControl\VersionControlQuery;
 use App\Domain\VersionControl\VersionControlService;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Route;
@@ -32,7 +32,7 @@ class RepoController extends AbstractController
      */
     public function getRepos(string $versionControl, string $userName): Response
     {
-        $query = new VersionControlQueryCommand($versionControl, $userName);
+        $query = new VersionControlQuery($versionControl, $userName);
         return $this->json($this->service->getRepos($query));
     }
 
@@ -41,7 +41,7 @@ class RepoController extends AbstractController
      */
     public function getRepo(string $versionControl, string $userName, string $repoName): Response
     {
-        $query = new VersionControlQueryCommand($versionControl, $userName, $repoName);
+        $query = new VersionControlQuery($versionControl, $userName, $repoName);
         return $this->json($this->service->getRepo($query));
     }
 
@@ -50,7 +50,7 @@ class RepoController extends AbstractController
      */
     public function getForks(string $versionControl, string $userName, string $repoName): Response
     {
-        $query = new VersionControlQueryCommand($versionControl, $userName, $repoName);
+        $query = new VersionControlQuery($versionControl, $userName, $repoName);
         return $this->json($this->service->getForks($query));
     }
 
@@ -59,7 +59,7 @@ class RepoController extends AbstractController
      */
     public function getForkParent(string $versionControl, string $userName, string $repoName): Response
     {
-        $query = new VersionControlQueryCommand($versionControl, $userName, $repoName);
+        $query = new VersionControlQuery($versionControl, $userName, $repoName);
         return $this->json($this->service->getForkParent($query));
     }
 

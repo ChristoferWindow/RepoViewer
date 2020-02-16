@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\VersionControl;
 
-class VersionControlQueryCommand
+class VersionControlQuery
 {
     private $versionControl;
     private $userName;

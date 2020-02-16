@@ -37,15 +37,4 @@ class VersionControlService
         $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
         return $adapter->getForks($command->getUserName(), $command->getRepoName());
     }
-
-    public function getForkParent(VersionControlQueryCommand $command):array
-    {
-        $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
-        return $adapter->getParent($command->getUserName(), $command->getRepoName());
-    }
-
-    private function getVersionControlAdapter(VersionControlQueryCommand $command)
-    {
-        $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
-    }
 }

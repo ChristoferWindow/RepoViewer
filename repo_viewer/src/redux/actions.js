@@ -20,9 +20,21 @@ export function fetchReposError(error) {
     }
 }
 
-export function addFormSubmit(submit) {
+export function fetchRepoDetailsPending() {
     return {
-        type: types.ADD_FORM_SUBMIT,
-        formSubmit: submit
+        type: types.FETCH_REPO_DETAILS_PENDING
+    }
+}
+export function fetchRepoDetailsSuccess(repoName, repoDetails) {
+    return {
+        type: types.FETCH_REPO_DETAILS_SUCCESS,
+        repoName: repoName,
+        repoDetails: repoDetails
+    }
+}
+export function fetchRepoDetailsError(error) {
+    return {
+        type: types.FETCH_REPO_DETAILS_ERROR,
+        error: error
     }
 }

@@ -1,6 +1,7 @@
 // reducer.js
 
-import {FETCH_REPOS_PENDING, FETCH_REPOS_SUCCESS, FETCH_REPOS_ERROR} from './types';
+import * as types from "./types";
+import {ADD_FORM_SUBMIT} from "./types";
 
 const initialState = {
     pending: false,
@@ -10,18 +11,18 @@ const initialState = {
 
 export function reposReducer(state = initialState, action) {
     switch(action.type) {
-        case FETCH_REPOS_PENDING:
+        case types.FETCH_REPOS_PENDING:
             return {
                 ...state,
                 pending: true
             }
-        case FETCH_REPOS_SUCCESS:
+        case types.FETCH_REPOS_SUCCESS:
             return {
                 ...state,
                 pending: false,
                 repos: action.payload
             }
-        case FETCH_REPOS_ERROR:
+        case types.FETCH_REPOS_ERROR:
             return {
                 ...state,
                 pending: false,
@@ -29,6 +30,17 @@ export function reposReducer(state = initialState, action) {
             }
         default:
             return state;
+    }
+}
+
+export function repoFormReducer(state = initialState, action) {
+    switch (action.type) {
+        case ADD_FORM_SUBMIT:
+            return {
+                ...state,
+                formSubmitted:true,
+                formSubmit: action.payload
+            }
     }
 }
 

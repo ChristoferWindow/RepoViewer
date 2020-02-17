@@ -1,6 +1,12 @@
 // fetchRepos.js
 
-import {fetchReposPending, fetchReposSuccess, fetchReposError} from './actions';
+import {
+    fetchReposPending,
+    fetchReposSuccess,
+    fetchReposError,
+    fetchRepoDetailsPending,
+    fetchRepoDetailsSuccess, fetchRepoDetailsError
+} from './actions';
 
 const baseUrl = 'http://localhost:8000/api';
 
@@ -22,20 +28,20 @@ export function fetchReposAction(versionControl, userName) {
     }
 }
 
-export function fetchRepo() {
+export function fetchRepo(versionControl, userName, repoName) {
     return dispatch => {
-        dispatch(fetchReposPending());
-        fetch('https://exampleapi.com/repos')
+        dispatch(fetchRepoDetailsPending());
+        fetch(baseUrl + '/' + versionControl + '/users/' + userName + '/repos/' + repoName, {mode:"cors"})
             .then(res => res.json())
             .then(res => {
                 if(res.error) {
                     throw(res.error);
                 }
-                dispatch(fetchReposSuccess(res.repos));
-                return res.repos;
+                dispatch(fetchRepoDetailsSuccess(res));
+                return res;
             })
             .catch(error => {
-                dispatch(fetchReposError(error));
+                dispatch(fetchRepoDetailsError(error));
             })
     }
 }

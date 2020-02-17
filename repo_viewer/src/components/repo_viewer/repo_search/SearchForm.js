@@ -1,12 +1,13 @@
 import React from "react";
-import {applyMiddleware as dispatch} from "redux";
 import {fetchReposAction} from "../../../redux/reposFunctions";
+import {connect} from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import * as VersionControlTypes from "./versionControlTypes";
+import {getRepos, getReposError, getReposPending} from "../../../redux/reducers";
 
 class SearchForm extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class SearchForm extends React.Component {
             return
         }
 
-        dispatch(fetchReposAction(this.state.versionControl , this.state.userName));
+        fetchReposAction(this.state.versionControl , this.state.userName);
         console.log('dispatched');
     }
     onChange = (event) => {
@@ -73,6 +74,7 @@ class SearchForm extends React.Component {
                         </Col>
                         <Col sm="2">
                             <Button
+                                disabled={this.props.pending}
                                 size="sm"
                                 variant="primary"
                                 type="submit"
@@ -87,4 +89,15 @@ class SearchForm extends React.Component {
     }
 }
 
-export default SearchForm;
+const mapStateToProps = state => ({
+    pending: state.pending
+})
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        submitForm: (versionControl, userName) => dispatch(fetchReposAction(versionControl, userName))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

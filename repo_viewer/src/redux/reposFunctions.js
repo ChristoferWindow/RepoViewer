@@ -37,7 +37,7 @@ export function fetchRepo(versionControl, userName, repoName) {
                 if(res.error) {
                     throw(res.error);
                 }
-                dispatch(fetchRepoDetailsSuccess(res));
+                dispatch(fetchRepoDetailsSuccess(repoName, res));
                 return res;
             })
             .catch(error => {

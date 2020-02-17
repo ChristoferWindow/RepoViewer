@@ -48,7 +48,7 @@ export function reposDetailsReducer(state = initialState, action) {
                 ...state,
                 pending: false,
                 error: false,
-                repoWithDetails: (action.repoName, action.repoDetails)
+                repos: {repoName : action.repoName, repoDetails: action.repoDetails}
             }
         case types.FETCH_REPO_DETAILS_ERROR:
             return {
@@ -67,6 +67,6 @@ export const getRepos = state => state.repos.repos;
 export const getReposPending = state => state.repos.pending;
 export const getReposError = state => state.repos.error;
 
-export const getRepoDetails = state => state.reposDetails.repoWithDetails;
+export const getRepoDetails = state => state.reposDetails.repos;
 export const getRepoDetailsPending = state => state.reposDetails.pending;
 export const getRepoDetailsError = state => state.reposDetails.error;

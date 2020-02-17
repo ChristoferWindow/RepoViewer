@@ -14,6 +14,7 @@ class Repo extends React.Component {
                    name = {this.props.repo.name}
                    owner = {this.props.repo.owner.login}
                    isFork = {this.props.repo.fork}
+                   forksCount = {this.props.repo.forksCount}
                    eventKey = {this.props.eventKey}
                    versionControl = "github"
                />

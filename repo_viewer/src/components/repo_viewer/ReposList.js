@@ -44,7 +44,6 @@ class ReposList extends React.Component {
             );
 
             return (
-                <
                 <Accordion>
                     {versionControlItems}
                 </Accordion>

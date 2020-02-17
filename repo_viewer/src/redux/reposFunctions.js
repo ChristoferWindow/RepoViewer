@@ -13,8 +13,8 @@ export function fetchReposAction(versionControl, userName) {
                 if(res.error) {
                     throw(res.error);
                 }
-                dispatch(fetchReposSuccess(res.repos));
-                return res.repos;
+                dispatch(fetchReposSuccess(res));
+                return res;
             })
             .catch(error => {
                 dispatch(fetchReposError(error));

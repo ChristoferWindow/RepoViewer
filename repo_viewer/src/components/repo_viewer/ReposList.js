@@ -7,39 +7,41 @@ import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
 class ReposList extends React.Component {
-
-    shouldComponentRender = () => {
-        const {formSubmitted} = this.props;
-        const {repos} = this.props;
-        console.log('render');
-        console.log(repos);
-        if(this.formSubmitted === false) return false;
-        // more tests
-        return true;
-    }
-
     render(){
-        if(this.props.pending) return (
-            <div className={"text-center"}>
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
-            </div>
-        );
+        const {pending, error, repos} = this.props;
+        console.log('pending' + pending)
+        console.log('error' + error)
+        console.log(repos)
+        if (pending) {
+            return (
+                <div className={"text-center"}>
+                    <Spinner animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                </div>
+            );
+        }
 
-        if(this.props.error) return (
-            <Alert variant="danger">
-                Couldn't fetch repos
-            </Alert>
-        );
+        if(error) {
+            return (
+                <Alert variant="danger" className={"text-center"}>
+                    Upss we couldn't fetch repos. Check if the username is correct
+                </Alert>
+            );
+        }
 
-        const {repos} = this.props;
+        if(!pending && !error && (!repos || repos.length === 0)) {
+            return (
+                null
+            );
+        }
 
         if (Array.isArray(repos)) {
+            console.log('Jest array');
+            console.log(repos)
             const versionControlItems = repos.map((versionControlItem, index) =>
                 <Repo repo={versionControlItem} eventKey={index}></Repo>
             );
@@ -52,8 +54,6 @@ class ReposList extends React.Component {
                 </Accordion>
             );
         }
-
-        return (<Alert variant="danger">Couldn't fetch repos</Alert>);
     }
 }
 

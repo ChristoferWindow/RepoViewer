@@ -7,7 +7,7 @@ class ReposTitle extends Component {
 
     render() {
         return (
-            <h2>
+            <h2 className={"text-center"}>
                 Listing of repos
             </h2>
         )

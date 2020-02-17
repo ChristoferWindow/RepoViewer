@@ -8,6 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 
 class ReposList extends React.Component {
 
@@ -31,20 +32,28 @@ class ReposList extends React.Component {
         );
 
         if(this.props.error) return (
-            <Button variant="danger" className={"text-center"}>Couldn't fetch repos</Button>
+            <Alert variant="danger">
+                Couldn't fetch repos
+            </Alert>
         );
 
         const {repos} = this.props;
-        const versionControlItems = repos.map((versionControlItem, index) =>
-            <Repo repo={versionControlItem} eventKey={index}></Repo>
-        );
-        return (
-            <Accordion>
-                <Card>
-                    {versionControlItems}
-                </Card>
-            </Accordion>
-        );
+
+        if (Array.isArray(repos)) {
+            const versionControlItems = repos.map((versionControlItem, index) =>
+                <Repo repo={versionControlItem} eventKey={index}></Repo>
+            );
+
+            return (
+                <Accordion>
+                    <Card>
+                        {versionControlItems}
+                    </Card>
+                </Accordion>
+            );
+        }
+
+        return (<Alert variant="danger">Couldn't fetch repos</Alert>);
     }
 }
 

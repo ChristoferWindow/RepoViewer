@@ -1,6 +1,6 @@
 // reducer.js
 
-import {FETCH_REPOS_PENDING, FETCH_REPOS_SUCCESS, FETCH_REPOS_ERROR} from './actions';
+import {FETCH_REPOS_PENDING, FETCH_REPOS_SUCCESS, FETCH_REPOS_ERROR} from './types';
 
 const initialState = {
     pending: false,

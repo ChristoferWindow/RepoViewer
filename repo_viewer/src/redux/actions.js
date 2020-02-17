@@ -19,3 +19,10 @@ export function fetchReposError(error) {
         error: error
     }
 }
+
+export function addFormSubmit(submit) {
+    return {
+        type: types.ADD_FORM_SUBMIT,
+        formSubmit: submit
+    }
+}

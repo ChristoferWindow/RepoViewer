@@ -1,7 +1,8 @@
 import { createStore } from "redux";
+import {reposReducer} from "./reducers";
 
 export const configureStore = () => {
-    const store = createStore();
+    const store = createStore(reposReducer);
 
     return store;
 };

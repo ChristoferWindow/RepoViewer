@@ -27,7 +27,7 @@ class SearchForm extends React.Component {
             return
         }
 
-        submitForm(this.state.versionControl , this.state.userName);
+        this.props.submitForm(this.state.versionControl , this.state.userName);
         console.log('dispatched');
     }
     onChange = (event) => {

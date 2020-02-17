@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion"
-import {fetchRepoDetailsAction, fetchReposAction} from "../../redux/reposFunctions";
+import {fetchRepoDetailsAction, fetchReposAction} from "./functions/reposFunctions";
 import {connect} from "react-redux";
 import RepoDetails from "./RepoDetails";
 import Col from "react-bootstrap/Col";
@@ -22,6 +22,7 @@ class RepoHeader extends React.Component {
             <Accordion.Toggle as={Card.Header} eventKey={this.props.eventKey} onClick={this.loadDetails}>
                 <Row>
                     <Col className={"text-center"}>{this.props.name}</Col>
+                    <Col className={"text-center"}>{this.props.language}</Col>
                     <Col className={"text-center"}>{this.props.isFork ? 'yes' : 'no'}</Col>
                     <Col className={"text-center"}>{this.props.forksCount}</Col>
                 </Row>

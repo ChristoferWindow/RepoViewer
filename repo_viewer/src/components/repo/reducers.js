@@ -1,6 +1,6 @@
 // reducer.js
 
-import * as types from "./types";
+import * as types from "./consts/actionTypes";
 
 const initialState = {
     pending: false,
@@ -35,6 +35,7 @@ export function reposReducer(state = initialState, action) {
     }
 }
 
+/** TODO fix saving repoDetails, to save it to store as [{repoName: repoDetails}] **/
 export function reposDetailsReducer(state = initialState, action) {
     switch(action.type) {
         case types.FETCH_REPO_DETAILS_PENDING:

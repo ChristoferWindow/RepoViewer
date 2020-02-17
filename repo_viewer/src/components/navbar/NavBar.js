@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import styles from './NavBar.css';
-import SearchForm from "../repo_viewer/repo_search/SearchForm";
+import SearchForm from "../repoViewer/repoSearch/SearchForm";
 
 class NavBar extends React.Component {
 

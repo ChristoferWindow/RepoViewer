@@ -1,12 +1,12 @@
 import React from "react";
-import {fetchReposAction} from "../../../redux/reposFunctions";
+import {fetchReposAction} from "../../repo/functions/reposFunctions";
 import {connect} from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import * as VersionControlTypes from "./versionControlTypes";
+import * as VersionControlTypes from "../constants/versionControlTypes";
 
 class SearchForm extends React.Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class SearchForm extends React.Component {
     }
 
     render(){
-        /** TODO in future query API for available Version Control Services **/
+        /** TODO in future query API for available Version Control Services and add indexing from backend **/
         const versionControlItems = VersionControlTypes.VERSION_CONTROL_TYPES_LIST.map((versionControlItem) =>
             <option
                 value={versionControlItem}

@@ -12,19 +12,10 @@ class RepoView extends Component {
         this.state = { orderBy: null};
     }
     handleChange = (newValue) => {
-        console.log(newValue);
         this.state.orderBy = newValue;
-        console.log(this.state.orderBy);
-    }
-
-    printOrder = () => {
-        console.log('order');
-        console.log(this.state.orderBy)
     }
 
     render() {
-        this.printOrder()
-        console.log(this.state.orderBy);
         return (
             <>
                 <NavBar/>

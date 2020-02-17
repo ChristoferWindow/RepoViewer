@@ -59,7 +59,6 @@ class ReposList extends React.Component {
         if (Array.isArray(repos)) {
             let reposSorted = repos
             const sort = this.props.sortBy
-            console.log(sort);
 
             /** TODO sorting functions on redux dispatch **/
             if (sort && null !== sort) {

@@ -25,10 +25,10 @@ export function fetchRepoDetailsPending() {
         type: types.FETCH_REPO_DETAILS_PENDING
     }
 }
-export function fetchRepoDetailsSuccess(uniqueRepoName, repoDetails) {
+export function fetchRepoDetailsSuccess(repoName, repoDetails) {
     return {
         type: types.FETCH_REPO_DETAILS_SUCCESS,
-        uniqueRepoName: uniqueRepoName,
+        repoName: repoName,
         repoDetails: repoDetails
     }
 }

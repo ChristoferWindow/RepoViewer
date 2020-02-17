@@ -21,7 +21,7 @@ export function reposReducer(state = initialState, action) {
                 ...state,
                 pending: false,
                 error: false,
-                repos: action.payload
+                repos: action.repos
             }
         case types.FETCH_REPOS_ERROR:
             return {

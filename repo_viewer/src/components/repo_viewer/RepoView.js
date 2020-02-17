@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReposList from "./ReposList";
 import SearchForm from "./repo_search/SearchForm";
 import NavBar from "../navbar/NavBar";
+import Container from "react-bootstrap/Container";
+import ReposTitle from "./ReposTitle";
 
 class RepoView extends Component {
     constructor(props) {
@@ -11,8 +13,11 @@ class RepoView extends Component {
         return (
             <>
                 <NavBar/>
-                <SearchForm/>
-                <ReposList/>
+                <Container>
+                    <SearchForm/>
+                    <ReposTitle/>
+                    <ReposList/>
+                </Container>
             </>
         )
     }

@@ -3,7 +3,7 @@ import Accordion from "./RepoHeader";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-class ReposTitle extends Component {
+class ReposListingHeader extends Component {
     constructor(props) {
         super(props);
     }
@@ -11,6 +11,7 @@ class ReposTitle extends Component {
     render() {
         return (
        <>
+
             <h2 className={"text-center"}>
                 Listing of repos
             </h2>
@@ -24,4 +25,4 @@ class ReposTitle extends Component {
     }
 }
 
-export default ReposTitle
+export default ReposListingHeader

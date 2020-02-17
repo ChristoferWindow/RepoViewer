@@ -3,7 +3,7 @@ import ReposList from "./ReposList";
 import SearchForm from "./repo_search/SearchForm";
 import NavBar from "../navbar/NavBar";
 import Container from "react-bootstrap/Container";
-import ReposTitle from "./ReposTitle";
+import ReposListingHeader from "./ReposListingHeader";
 
 class RepoView extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class RepoView extends Component {
                 <NavBar/>
                 <Container>
                     <SearchForm/>
-                    <ReposTitle/>
+                    <ReposListingHeader/>
                     <ReposList/>
                 </Container>
             </>

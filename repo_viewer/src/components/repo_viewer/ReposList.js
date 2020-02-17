@@ -32,8 +32,10 @@ class ReposList extends React.Component {
 
         if(!pending && !error && (!repos || repos.length === 0)) {
             return (
-                null
-            );
+                <Alert variant="light" className={"text-center"}>
+                    No results found
+                </Alert>
+            )
         }
 
         if (Array.isArray(repos)) {
@@ -42,6 +44,7 @@ class ReposList extends React.Component {
             );
 
             return (
+                <
                 <Accordion>
                     {versionControlItems}
                 </Accordion>

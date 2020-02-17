@@ -32,7 +32,7 @@ export function fetchReposAction(versionControl, userName) {
  *      to do this here needs to be name like "github/userName
  **/
 
-export function fetchRepo(versionControl, userName, repoName) {
+export function fetchRepoDetailsAction(versionControl, userName, repoName) {
     return dispatch => {
         dispatch(fetchRepoDetailsPending());
         fetch(baseUrl + '/' + versionControl + '/users/' + userName + '/repos/' + repoName, {mode:"cors"})

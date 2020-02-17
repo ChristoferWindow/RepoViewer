@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import * as VersionControlTypes from "./versionControlTypes";
-import {getRepos, getReposError, getReposPending} from "../../../redux/reducers";
 
 class SearchForm extends React.Component {
     constructor(props) {
@@ -28,7 +27,6 @@ class SearchForm extends React.Component {
         }
 
         this.props.submitForm(this.state.versionControl , this.state.userName);
-        console.log('dispatched');
     }
     onChange = (event) => {
         let nam = event.target.name;

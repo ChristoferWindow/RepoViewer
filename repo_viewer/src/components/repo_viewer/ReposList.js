@@ -21,41 +21,18 @@ class ReposList extends React.Component {
     }
 
     render(){
-        // const {repos} = this.props;
-        const repos = [
-            {
-                "name": "keras",
-                "owner": {
-                    "ownerLogin": "aa",
-                    "avatarUrl": "https://avatars1.githubusercontent.com/u/28438?v=4"
-                },
-                "fork": true,
-                "forksCount": 1,
-                "language": "Python"
-            },
-            {
-                "name": "tensorflow",
-                "owner": {
-                "ownerLogin": "aa",
-                    "avatarUrl": "https://avatars1.githubusercontent.com/u/28438?v=4"
-            },
-                "fork": true,
-                "forksCount": 0,
-                "language": "C++"
-            }
-        ];
+        if(this.props.pending) return (
+            <div className={"text-center"}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
+        );
 
+        const {repos} = this.props;
         const versionControlItems = repos.map((versionControlItem, index) =>
             <Repo repo={versionControlItem} eventKey={index}></Repo>
         );
-
-
-        if(!this.shouldComponentRender()) return (
-            <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-            </Spinner>
-        );
-
         return (
             <Accordion>
                 <Card>

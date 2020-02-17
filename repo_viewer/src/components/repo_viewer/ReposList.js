@@ -5,6 +5,8 @@ import {bindActionCreators} from "redux";
 import {fetchReposAction} from "../../redux/reposFunctions";
 import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
 class ReposList extends React.Component {
 
@@ -19,10 +21,34 @@ class ReposList extends React.Component {
     }
 
     render(){
-        const {repos} = this.props;
-        const versionControlItems = repos.map((versionControlItem) =>
-            <Repo repo={versionControlItem}></Repo>
+        // const {repos} = this.props;
+        const repos = [
+            {
+                "name": "keras",
+                "owner": {
+                    "ownerLogin": "aa",
+                    "avatarUrl": "https://avatars1.githubusercontent.com/u/28438?v=4"
+                },
+                "fork": true,
+                "forksCount": 1,
+                "language": "Python"
+            },
+            {
+                "name": "tensorflow",
+                "owner": {
+                "ownerLogin": "aa",
+                    "avatarUrl": "https://avatars1.githubusercontent.com/u/28438?v=4"
+            },
+                "fork": true,
+                "forksCount": 0,
+                "language": "C++"
+            }
+        ];
+
+        const versionControlItems = repos.map((versionControlItem, index) =>
+            <Repo repo={versionControlItem} eventKey={index}></Repo>
         );
+
 
         if(!this.shouldComponentRender()) return (
             <Spinner animation="border" role="status">
@@ -31,9 +57,11 @@ class ReposList extends React.Component {
         );
 
         return (
-            <>
-                {versionControlItems}
-            </>
+            <Accordion>
+                <Card>
+                    {versionControlItems}
+                </Card>
+            </Accordion>
         );
     }
 }

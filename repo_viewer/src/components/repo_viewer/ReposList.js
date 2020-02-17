@@ -12,9 +12,7 @@ import Alert from "react-bootstrap/Alert";
 class ReposList extends React.Component {
     render(){
         const {pending, error, repos} = this.props;
-        console.log('pending' + pending)
-        console.log('error' + error)
-        console.log(repos)
+
         if (pending) {
             return (
                 <div className={"text-center"}>

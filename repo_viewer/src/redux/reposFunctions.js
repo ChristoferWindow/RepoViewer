@@ -30,7 +30,7 @@ export function fetchReposAction(versionControl, userName) {
 
 /** TODO If there will be other versionControl systems, repoName should be unique across services
  *      to do this here needs to be name like "github/userName
- * **/
+ **/
 
 export function fetchRepo(versionControl, userName, repoName) {
     return dispatch => {
@@ -41,8 +41,7 @@ export function fetchRepo(versionControl, userName, repoName) {
                 if(res.error) {
                     throw(res.error);
                 }
-                const uniqueRepoName = versionControl + '_' + userName + '_' + repoName
-                dispatch(fetchRepoDetailsSuccess(uniqueRepoName, res));
+                dispatch(fetchRepoDetailsSuccess(repoName, res));
                 return res;
             })
             .catch(error => {

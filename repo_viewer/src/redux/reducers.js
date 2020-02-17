@@ -35,7 +35,7 @@ export function reposReducer(state = initialState, action) {
     }
 }
 
-export function repoDetailsReducer(state = initialState, action) {
+export function reposDetailsReducer(state = initialState, action) {
     switch(action.type) {
         case types.FETCH_REPO_DETAILS_PENDING:
             return {
@@ -44,11 +44,11 @@ export function repoDetailsReducer(state = initialState, action) {
                 error: false
             }
         case types.FETCH_REPO_DETAILS_SUCCESS:
-            state.repoDetails.set(action.repoName, action.repoDetails)
             return {
                 ...state,
                 pending: false,
                 error: false,
+                repoWithDetails: (action.repoName, action.repoDetails)
             }
         case types.FETCH_REPO_DETAILS_ERROR:
             return {
@@ -63,10 +63,10 @@ export function repoDetailsReducer(state = initialState, action) {
     
 }
 
-export const getRepos = state => state.repos;
-export const getReposPending = state => state.pending;
-export const getReposError = state => state.error;
+export const getRepos = state => state.repos.repos;
+export const getReposPending = state => state.repos.pending;
+export const getReposError = state => state.repos.error;
 
-export const getRepoDetails = state => state.repoDetails;
-export const getRepoDetailsPending = state => state.pending;
-export const getRepoDetailsError = state => state.error;
+export const getRepoDetails = state => state.reposDetails.repoWithDetails;
+export const getRepoDetailsPending = state => state.reposDetails.pending;
+export const getRepoDetailsError = state => state.reposDetails.error;

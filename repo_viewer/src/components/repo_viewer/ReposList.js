@@ -38,8 +38,6 @@ class ReposList extends React.Component {
         }
 
         if (Array.isArray(repos)) {
-            console.log('Jest array');
-            console.log(repos)
             const versionControlItems = repos.map((versionControlItem, index) =>
                 <Repo repo={versionControlItem} eventKey={index}></Repo>
             );

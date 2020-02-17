@@ -6,7 +6,7 @@ import {
     fetchReposError,
     fetchRepoDetailsPending,
     fetchRepoDetailsSuccess, fetchRepoDetailsError
-} from './actions';
+} from '../actions';
 
 const baseUrl = 'http://localhost:8000/api';
 

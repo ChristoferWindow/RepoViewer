@@ -1,9 +1,9 @@
 import React from 'react';
 import Accordion from "react-bootstrap/Accordion"
 import Card from "react-bootstrap/Card";
-import {getRepoDetails, getRepoDetailsError, getRepoDetailsPending} from "../../redux/reducers";
+import {getRepoDetails, getRepoDetailsError, getRepoDetailsPending} from "./reducers";
 import {bindActionCreators} from "redux";
-import {fetchRepoDetailsAction} from "../../redux/reposFunctions";
+import {fetchRepoDetailsAction} from "./functions/reposFunctions";
 import {connect} from "react-redux";
 import Spinner from "./ReposList";
 import Alert from "react-bootstrap/Alert";

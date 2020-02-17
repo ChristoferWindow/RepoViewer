@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 class ReposList extends React.Component {
 
@@ -27,6 +28,10 @@ class ReposList extends React.Component {
                     <span className="sr-only">Loading...</span>
                 </Spinner>
             </div>
+        );
+
+        if(this.props.error) return (
+            <Button variant="danger" className={"text-center"}>Couldn't fetch repos</Button>
         );
 
         const {repos} = this.props;

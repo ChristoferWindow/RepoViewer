@@ -4,7 +4,7 @@ import {fetchReposPending, fetchReposSuccess, fetchReposError} from './actions';
 
 const baseUrl = 'localhost:8000/api';
 
-export function fetchRepos(versionControl, userName) {
+export function fetchReposAction(versionControl, userName) {
     return dispatch => {
         dispatch(fetchReposPending());
         fetch(baseUrl + '/' + versionControl + '/users/' + userName + '/repos')

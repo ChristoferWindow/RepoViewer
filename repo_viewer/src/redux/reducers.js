@@ -1,7 +1,6 @@
 // reducer.js
 
 import * as types from "./types";
-import {ADD_FORM_SUBMIT} from "./types";
 
 const initialState = {
     pending: false,
@@ -35,12 +34,14 @@ export function reposReducer(state = initialState, action) {
 
 export function repoFormReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_FORM_SUBMIT:
+        case types.ADD_FORM_SUBMIT:
             return {
                 ...state,
                 formSubmitted:true,
                 formSubmit: action.payload
             }
+        default:
+            return state;
     }
 }
 

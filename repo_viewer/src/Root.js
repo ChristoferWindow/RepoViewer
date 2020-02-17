@@ -8,7 +8,7 @@ const Root = props => {
 
     return (
         <Provider store={store}>
-            <App />
+            <App/>
         </Provider>
     );
 };

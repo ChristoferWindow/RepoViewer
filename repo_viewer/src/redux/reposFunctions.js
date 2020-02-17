@@ -4,7 +4,7 @@ import {fetchReposPending, fetchReposSuccess, fetchReposError} from './actions';
 
 const baseUrl = 'localhost:8000/api';
 
-export function fetchRepos(versionControl, userName, repoName) {
+export function fetchRepos(versionControl, userName) {
     return dispatch => {
         dispatch(fetchReposPending());
         fetch(baseUrl + '/' + versionControl + '/users/' + userName + '/repos')
@@ -13,7 +13,7 @@ export function fetchRepos(versionControl, userName, repoName) {
                 if(res.error) {
                     throw(res.error);
                 }
-                dispatch(fetchReposSuccess(res.repos)
+                dispatch(fetchReposSuccess(res.repos));
                 return res.repos;
             })
             .catch(error => {
@@ -31,7 +31,7 @@ export function fetchRepo() {
                 if(res.error) {
                     throw(res.error);
                 }
-                dispatch(fetchReposSuccess(res.repos)
+                dispatch(fetchReposSuccess(res.repos));
                 return res.repos;
             })
             .catch(error => {

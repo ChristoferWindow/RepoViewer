@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import Repo from "./components/repo_viewer/Repo";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import RepoView from "./components/repo_viewer/RepoView";
 
 function App() {
   return (
-     <>
-       <Repo></Repo>
-     </>
+    <RepoView/>
   );
 }
 

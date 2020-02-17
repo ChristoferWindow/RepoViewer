@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import {fetchRepos} from '../../redux/reposFunctions';
-import {getProductsError, getProducts, getProductsPending} from 'reducer';
-
-import LoadingSpinner from './SomeLoadingSpinner';
+import {getReposError, getRepos, getReposPending} from '../../redux/reducers';
 import ReposList from "./ReposList";
 import NavBar from "../../App";
 import SearchForm from "./repo_search/SearchForm";
 
-class ProductView extends Component {
+class RepoView extends Component {
     constructor(props) {
         super(props);
-        this.shouldComponentRender = this.shouldComponentRender.bind(this);
+        // this.shouldComponentRender = this.shouldComponentRender.bind(this);
 
     }
 
@@ -24,27 +21,19 @@ class ProductView extends Component {
     }
 
     shouldComponentRender() {
-        const {pending} = this.props;
-        if(this.pending === false) return false;
+        const {formSubmitted} = this.props;
+        if(this.formSubmitted === false) return false;
         // more tests
         return true;
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
 
     render() {
-        const {repos, error} = this.props;
-
-        if(!this.shouldComponentRender()) return <LoadingSpinner />
-
         return (
             <>
                 <NavBar/>
                 <SearchForm/>
-                {error && <span className='product-list-error'>{error}</span>}
-                <ReposList repos={repos} />
+                <ReposList/>
             </>
         )
     }
@@ -52,9 +41,9 @@ class ProductView extends Component {
 
 
 const mapStateToProps = state => ({
-    error: getProductsError(state),
-    products: getProducts(state),
-    pending: getProductsPending(state)
+    error: getReposError(state),
+    repos: getRepos(state),
+    pending: getReposPending(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

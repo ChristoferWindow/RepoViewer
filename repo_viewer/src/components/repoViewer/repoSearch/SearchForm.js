@@ -19,9 +19,6 @@ class SearchForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target.name);
-        console.log(this.state.versionControl)
-        console.log(this.state.userName)
         if (!this.state.userName.trim()) {
             return
         }

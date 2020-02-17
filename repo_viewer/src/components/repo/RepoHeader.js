@@ -8,12 +8,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 class RepoHeader extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     loadDetails = () => {
-        console.log('click header');
         this.props.loadRepoDetails(this.props.versionControl , this.props.owner, this.props.name);
     }
 

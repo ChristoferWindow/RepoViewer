@@ -12,7 +12,6 @@ import Alert from "react-bootstrap/Alert";
 class ReposList extends React.Component {
     render(){
         const {pending, error, repos} = this.props;
-
         if (pending) {
             return (
                 <div className={"text-center"}>
@@ -39,14 +38,12 @@ class ReposList extends React.Component {
 
         if (Array.isArray(repos)) {
             const versionControlItems = repos.map((versionControlItem, index) =>
-                <Repo repo={versionControlItem} eventKey={index}></Repo>
+                <Card><Repo repo={versionControlItem} eventKey={index}></Repo></Card>
             );
 
             return (
                 <Accordion>
-                    <Card>
-                        {versionControlItems}
-                    </Card>
+                    {versionControlItems}
                 </Accordion>
             );
         }

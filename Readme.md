@@ -1,3 +1,10 @@
+
+SETUP:
+In root folder run:
+    composer install && php bin/console server:run
+In repo_viewer folder run
+    npm init && npm start
+
 API Routing:
 
 Simple, logicall routes eg. /api/github/users/UserTest/repos/RepoTest
@@ -42,11 +49,11 @@ TO DO
 		- Move string keys to Enums
 		- Create urls by using sprintf  eg. "sprintf('/%s/users/%s/repos/%s', $versionControl, $userName, $repoName)
 		- Create collections and mentioned reponse objects instead of returning array. 
-		    In order to be sure of the data returned
+		   In order to be sure of the data returned
 		- Avoid using factory->createByName() in every function. 
 			Instead:
 				-Create adapters in DI
 				-Generate adapter earlier and pass it into service
-				-Create method for for getting adapter from factory
+				-Create method for for getting adapter from factory and save it to static
 		- Error handling from outside APIs, currently 404, 500, 403 etc. throws Exception, 
-		    which are unhandled (on the frontend it is handled)
+		  which are unhandled (on the frontend it is handled)

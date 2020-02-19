@@ -42,6 +42,6 @@ export function fetchRepoDetailsError(error) {
 export function sortReposBy(sortBy) {
     return {
         type: types.SORT_REPOS_BY,
-        sortBy: sortBy
+        sortReposBy: sortBy
     }
 }

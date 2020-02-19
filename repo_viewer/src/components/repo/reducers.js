@@ -64,16 +64,14 @@ export function reposDetailsReducer(state = initialState, action) {
     
 }
 
-export function sortReposByReducer(state = {sortBy: null}, action) {
-    switch (action.type) {
-        case types.SORT_REPOS_BY:
-            return {
-                ...state,
-                sortBy: action.sortBy
-            }
-        default:
-            return state;
+export function sortReposByReducer(state = {sortReposBy: 'forksCount-asc'}, action) {
+    if (action.type === types.SORT_REPOS_BY) {
+        return {
+            ...state,
+            sortReposBy: action.sortReposBy
+        }
     }
+    return state;
 }
 
 export const getRepos = state => state.repos.repos;
@@ -84,4 +82,4 @@ export const getRepoDetails = state => state.reposDetails.repos;
 export const getRepoDetailsPending = state => state.reposDetails.pending;
 export const getRepoDetailsError = state => state.reposDetails.error;
 
-export const getSortReposBy = state => state.sortReposBy.sortBy;
+export const getSortReposBy = state => state.sortReposBy.sortReposBy;

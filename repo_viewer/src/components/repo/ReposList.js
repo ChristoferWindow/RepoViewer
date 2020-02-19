@@ -67,20 +67,29 @@ class ReposList extends React.Component {
         if (Array.isArray(repos)) {
             let reposSorted = repos
             const sort = this.props.sortBy
+            console.log(sort);
 
             /** TODO sorting functions on redux dispatch **/
             if (sort && null !== sort) {
+                console.log('inside');
                 switch (sort) {
                     case SORT_BY_FORKS_COUNT_ASC:
-                        reposSorted = repos.sort( (a, b) => {return a.forksCount - b.forksCount})
+                        reposSorted = repos.slice().sort( (a, b) => {return a.forksCount - b.forksCount})
+                        break;
                     case SORT_BY_FORKS_COUNT_DESC:
-                        reposSorted = repos.sort( (a, b) => {return a.forksCount - b.forksCount})
+                        reposSorted = repos.slice().sort( (a, b) => {return b.forksCount - a.forksCount})
+                        break;
                     case SORT_BY_NAME_ASC:
-                        reposSorted = repos.sort((a, b) => {return a.toString().localeCompare(b)})
+                        reposSorted = repos.slice().sort((a, b) => {return a.name.localeCompare(b)})
+                        break;
                     case SORT_BY_NAME_DESC:
-                        reposSorted = repos.sort((a, b) => {return b.toString().localeCompare(a)})
+                        reposSorted = repos.slice().sort((a, b) => {return b.name.localeCompare(a)})
+                        break;
+                    default:
+                        reposSorted = repos;
                 }
             }
+            console.log(reposSorted);
             const versionControlItems = reposSorted.map((versionControlItem, index) =>
                 <Card><Repo repo={versionControlItem} eventKey={index}></Repo></Card>
             );
@@ -104,7 +113,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     fetchRepos: fetchReposAction,
     sortReposBy: sortReposByAction
-
 }, dispatch);
 
 export default connect(

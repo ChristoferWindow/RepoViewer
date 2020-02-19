@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VersionControl;
 
 use App\Domain\Common\ApiClient;
+use App\Domain\VersionControl\VersionControlQuery;
 
 /**
  * Class VersionControlAdapter
@@ -20,10 +21,10 @@ abstract class VersionControlAdapter
         $this->apiClient = $apiClient;
     }
 
-    public function getRepos(string $userName):array{}
-    public function getRepo(string $userName, string $repoName):array{}
-    public function getForks(string $userName, string $repoName):array{}
-    public function getLanguages(string $userName, string $repoName):array{}
+    public function getRepos(VersionControlQuery $query):array{}
+    public function getRepo(VersionControlQuery $query):array{}
+    public function getForks(VersionControlQuery $query):array{}
+    public function getLanguages(VersionControlQuery $query):array{}
     public function createUrl(array $urlParts):string
     {
         return implode('/', $urlParts);

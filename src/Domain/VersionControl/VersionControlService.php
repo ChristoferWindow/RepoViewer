@@ -23,19 +23,19 @@ class VersionControlService
         $adapter = null;
     }
 
-    public function getRepos(VersionControlQuery $command): array
+    public function getRepos(VersionControlQuery $query): array
     {
-        return $this->getAdapter($command->getVersionControl())->getRepos($command->getUserName());
+        return $this->getAdapter($query->getVersionControl())->getRepos($query);
     }
 
-    public function getRepo(VersionControlQuery $command): array
+    public function getRepo(VersionControlQuery $query): array
     {
-        return $this->getAdapter($command->getVersionControl())->getRepo($command->getUserName(), $command->getRepoName());
+        return $this->getAdapter($query->getVersionControl())->getRepo($query);
     }
 
-    public function getForks(VersionControlQuery $command): array
+    public function getForks(VersionControlQuery $query): array
     {
-        return $this->getAdapter($command->getVersionControl())->getForks($command->getUserName(), $command->getRepoName());
+        return $this->getAdapter($query->getVersionControl())->getForks($query);
     }
 
     private function getAdapter(string $name): VersionControlAdapter

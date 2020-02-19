@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\VersionControl\GitHub;
 
 use App\Domain\VersionControl\GitHubEnums;
+use App\Domain\VersionControl\VersionControlQuery;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use VersionControl\VersionControlAdapter;
 
@@ -14,12 +15,12 @@ use VersionControl\VersionControlAdapter;
  */
 class GithubVersionControlAdapter extends VersionControlAdapter
 {
-    public function getRepos(string $userName):array
+    public function getRepos(VersionControlQuery $query):array
     {
         $url = $this->createUrl([
             GitHubEnums::GITHUB_API_URL()->getValue(),
             GitHubEnums::GITHUB_USERS_URL()->getValue(),
-            $userName,
+            $query->getUserName(),
             GitHubEnums::GITHUB_REPOS_URL()->getValue(),
         ]);
 
@@ -41,8 +42,11 @@ class GithubVersionControlAdapter extends VersionControlAdapter
         return $response;
     }
 
-    public function getRepo(string $userName, string $repoName): array
+    public function getRepo(VersionControlQuery $query): array
     {
+        $userName = $query->getUserName();
+        $repoName = $query->getRepoName();
+
         $url = $this->createUrl([
             GitHubEnums::GITHUB_API_URL()->getValue(),
             GitHubEnums::GITHUB_REPOS_URL()->getValue(),
@@ -73,12 +77,12 @@ class GithubVersionControlAdapter extends VersionControlAdapter
 
         return $response;
     }
-    public function getForks(string $userName, string $repoName):array{
+    public function getForks(VersionControlQuery $query):array{
         $url = $this->createUrl([
             GitHubEnums::GITHUB_API_URL()->getValue(),
             GitHubEnums::GITHUB_REPOS_URL()->getValue(),
-            $userName,
-            $repoName,
+            $query->getUserName(),
+            $query->getRepoName(),
             GitHubEnums::GITHUB_FORKS_URL()->getValue(),
         ]);
 

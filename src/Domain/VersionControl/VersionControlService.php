@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\VersionControl;
 
+use VersionControl\VersionControlAdapter;
+
 class VersionControlService
 {
     /**
@@ -18,23 +20,26 @@ class VersionControlService
     public function __construct(VersionControlAdapterFactory $versionControlAdapterFactory)
     {
         $this->versionControlAdapterFactory = $versionControlAdapterFactory;
+        $adapter = null;
     }
 
     public function getRepos(VersionControlQuery $command): array
     {
-        $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
-        return $adapter->getRepos($command->getUserName());
+        return $this->getAdapter($command->getVersionControl())->getRepos($command->getUserName());
     }
 
     public function getRepo(VersionControlQuery $command): array
     {
-        $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
-        return $adapter->getRepo($command->getUserName(), $command->getRepoName());
+        return $this->getAdapter($command->getVersionControl())->getRepo($command->getUserName(), $command->getRepoName());
     }
 
     public function getForks(VersionControlQuery $command): array
     {
-        $adapter = $this->versionControlAdapterFactory->createByName($command->getVersionControl());
-        return $adapter->getForks($command->getUserName(), $command->getRepoName());
+        return $this->getAdapter($command->getVersionControl())->getForks($command->getUserName(), $command->getRepoName());
+    }
+
+    private function getAdapter(string $name): VersionControlAdapter
+    {
+        return $this->versionControlAdapterFactory->createByName($name);
     }
 }

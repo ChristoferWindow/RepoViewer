@@ -7,23 +7,15 @@ import ReposListingHeader from "../repo/ReposListingHeader";
 import Sorting from "./sort/Sorting";
 
 class RepoView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { orderBy: null};
-    }
-    handleChange = (newValue) => {
-        this.state.orderBy = newValue;
-    }
-
     render() {
         return (
             <>
                 <NavBar/>
                 <Container>
                     <SearchForm/>
-                    <Sorting onChange={this.handleChange}/>
+                    <Sorting/>
                     <ReposListingHeader/>
-                    <ReposList orderBy={this.state.orderBy}/>
+                    <ReposList/>
                 </Container>
             </>
         )

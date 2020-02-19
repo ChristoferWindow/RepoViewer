@@ -1,9 +1,9 @@
 
 SETUP:
-In root folder run:
-    composer install && php bin/console server:run
-In repo_viewer folder run
-    npm install && npm start
+
+In root folder run:   composer install && php bin/console server:run
+
+In repo_viewer folder run:  npm install && npm start
 
 API Routing:
 

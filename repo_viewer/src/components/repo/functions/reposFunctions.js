@@ -5,7 +5,7 @@ import {
     fetchReposSuccess,
     fetchReposError,
     fetchRepoDetailsPending,
-    fetchRepoDetailsSuccess, fetchRepoDetailsError
+    fetchRepoDetailsSuccess, fetchRepoDetailsError, sortReposBy
 } from '../actions';
 
 const baseUrl = 'http://localhost:8000/api';
@@ -47,5 +47,11 @@ export function fetchRepoDetailsAction(versionControl, userName, repoName) {
             .catch(error => {
                 dispatch(fetchRepoDetailsError(error));
             })
+    }
+}
+
+export function sortReposByAction(sortBy) {
+    return dispatch => {
+        dispatch(sortReposBy(sortBy));
     }
 }

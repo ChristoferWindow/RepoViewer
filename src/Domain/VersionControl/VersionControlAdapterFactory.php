@@ -6,6 +6,7 @@ namespace App\Domain\VersionControl;
 
 use App\Domain\Common\ApiClient;
 use App\Domain\VersionControl\GitHub\GithubVersionControlAdapter;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VersionControl\VersionControlAdapter;
 
 /**
@@ -38,7 +39,7 @@ class VersionControlAdapterFactory
             case VersionControlEnums::VERSION_CONTROL_GITHUB()->getValue() :
                 return new GithubVersionControlAdapter($this->apiClient);
             default:
-                return new GithubVersionControlAdapter($this->apiClient);
+                throw new NotFoundHttpException('Sorry we could not find specified url');
         }
     }
 }

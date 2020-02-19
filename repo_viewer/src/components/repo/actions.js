@@ -38,3 +38,10 @@ export function fetchRepoDetailsError(error) {
         error: error
     }
 }
+
+export function sortReposBy(sortBy) {
+    return {
+        type: types.SORT_REPOS_BY,
+        sortReposBy: sortBy
+    }
+}

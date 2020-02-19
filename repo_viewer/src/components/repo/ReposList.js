@@ -1,13 +1,21 @@
 import React from 'react';
 import Repo from "./Repo";
-import {getRepos, getReposError, getReposPending} from "./reducers";
+import {getRepos, getReposError, getReposPending, getSortReposBy} from "./reducers";
 import {bindActionCreators} from "redux";
-import {fetchReposAction} from "./functions/reposFunctions";
+import {fetchReposAction, sortReposByAction} from "./functions/reposFunctions";
 import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
+import {
+    SORT_BY_FORKS_COUNT_ASC,
+    SORT_BY_FORKS_COUNT_DESC,
+    SORT_BY_NAME_ASC,
+    SORT_BY_NAME_DESC
+} from "../repoViewer/sort/sortTypes";
+import * as sortTypes from "../repoViewer/sort/sortTypes";
+import {sortReposBy} from "./actions";
 
 class ReposList extends React.Component {
     constructor(props){
@@ -59,20 +67,29 @@ class ReposList extends React.Component {
         if (Array.isArray(repos)) {
             let reposSorted = repos
             const sort = this.props.sortBy
+            console.log(sort);
 
             /** TODO sorting functions on redux dispatch **/
             if (sort && null !== sort) {
+                console.log('inside');
                 switch (sort) {
-                    case "forksCount-asc":
-                        reposSorted = repos.sort( (a, b) => {return a.forksCount - b.forksCount})
-                    case "forksCount-desc":
-                        reposSorted = repos.sort( (a, b) => {return a.forksCount - b.forksCount})
-                    case "name-asc":
-                        reposSorted = repos.sort((a, b) => {return a.toString().localeCompare(b)})
-                    case "name-desc":
-                        reposSorted = repos.sort((a, b) => {return b.toString().localeCompare(a)})
+                    case SORT_BY_FORKS_COUNT_ASC:
+                        reposSorted = repos.slice().sort( (a, b) => {return a.forksCount - b.forksCount})
+                        break;
+                    case SORT_BY_FORKS_COUNT_DESC:
+                        reposSorted = repos.slice().sort( (a, b) => {return b.forksCount - a.forksCount})
+                        break;
+                    case SORT_BY_NAME_ASC:
+                        reposSorted = repos.slice().sort((a, b) => {return a.name.localeCompare(b)})
+                        break;
+                    case SORT_BY_NAME_DESC:
+                        reposSorted = repos.slice().sort((a, b) => {return b.name.localeCompare(a)})
+                        break;
+                    default:
+                        reposSorted = repos;
                 }
             }
+            console.log(reposSorted);
             const versionControlItems = reposSorted.map((versionControlItem, index) =>
                 <Card><Repo repo={versionControlItem} eventKey={index}></Repo></Card>
             );
@@ -90,10 +107,12 @@ const mapStateToProps = state => ({
     error: getReposError(state),
     repos: getRepos(state),
     pending: getReposPending(state),
+    sortBy: getSortReposBy(state),
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchRepos: fetchReposAction
+    fetchRepos: fetchReposAction,
+    sortReposBy: sortReposByAction
 }, dispatch);
 
 export default connect(

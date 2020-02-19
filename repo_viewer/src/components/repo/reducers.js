@@ -5,7 +5,7 @@ import * as types from "./consts/actionTypes";
 const initialState = {
     pending: false,
     repos: [],
-    error: null
+    error: null,
 }
 
 export function reposReducer(state = initialState, action) {
@@ -64,6 +64,18 @@ export function reposDetailsReducer(state = initialState, action) {
     
 }
 
+export function sortReposByReducer(state = {sortBy: null}, action) {
+    switch (action.type) {
+        case types.SORT_REPOS_BY:
+            return {
+                ...state,
+                sortBy: action.sortBy
+            }
+        default:
+            return state;
+    }
+}
+
 export const getRepos = state => state.repos.repos;
 export const getReposPending = state => state.repos.pending;
 export const getReposError = state => state.repos.error;
@@ -71,3 +83,5 @@ export const getReposError = state => state.repos.error;
 export const getRepoDetails = state => state.reposDetails.repos;
 export const getRepoDetailsPending = state => state.reposDetails.pending;
 export const getRepoDetailsError = state => state.reposDetails.error;
+
+export const getSortReposBy = state => state.sortReposBy.sortBy;

@@ -3,10 +3,13 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form"
 import * as sortTypes from "./sortTypes";
+import {fetchReposAction} from "../../repo/functions/reposFunctions";
+import {connect} from "react-redux";
+import {getSortReposBy} from "../../repo/reducers";
 
 class Sorting extends React.Component {
     handleChange = (e) => {
-        this.props.onChange(e.target.value);
+        this.props.sortRepos(e.target.value);
     }
     render(){
         const sortOptions = sortTypes.repoSearchSortTypes.map((sortOption) =>
@@ -30,4 +33,17 @@ class Sorting extends React.Component {
         );
     }
 }
-export default Sorting
+
+
+const mapStateToProps = state => ({
+    pending: state.pending
+})
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        sortRepos: (sortType) => dispatch(getSortReposBy(sortType))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);

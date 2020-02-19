@@ -1,13 +1,21 @@
 import React from 'react';
 import Repo from "./Repo";
-import {getRepos, getReposError, getReposPending} from "./reducers";
+import {getRepos, getReposError, getReposPending, getSortReposBy} from "./reducers";
 import {bindActionCreators} from "redux";
-import {fetchReposAction} from "./functions/reposFunctions";
+import {fetchReposAction, sortReposByAction} from "./functions/reposFunctions";
 import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
+import {
+    SORT_BY_FORKS_COUNT_ASC,
+    SORT_BY_FORKS_COUNT_DESC,
+    SORT_BY_NAME_ASC,
+    SORT_BY_NAME_DESC
+} from "../repoViewer/sort/sortTypes";
+import * as sortTypes from "../repoViewer/sort/sortTypes";
+import {sortReposBy} from "./actions";
 
 class ReposList extends React.Component {
     constructor(props){
@@ -63,13 +71,13 @@ class ReposList extends React.Component {
             /** TODO sorting functions on redux dispatch **/
             if (sort && null !== sort) {
                 switch (sort) {
-                    case "forksCount-asc":
+                    case SORT_BY_FORKS_COUNT_ASC:
                         reposSorted = repos.sort( (a, b) => {return a.forksCount - b.forksCount})
-                    case "forksCount-desc":
+                    case SORT_BY_FORKS_COUNT_DESC:
                         reposSorted = repos.sort( (a, b) => {return a.forksCount - b.forksCount})
-                    case "name-asc":
+                    case SORT_BY_NAME_ASC:
                         reposSorted = repos.sort((a, b) => {return a.toString().localeCompare(b)})
-                    case "name-desc":
+                    case SORT_BY_NAME_DESC:
                         reposSorted = repos.sort((a, b) => {return b.toString().localeCompare(a)})
                 }
             }
@@ -90,10 +98,13 @@ const mapStateToProps = state => ({
     error: getReposError(state),
     repos: getRepos(state),
     pending: getReposPending(state),
+    sortBy: getSortReposBy(state),
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchRepos: fetchReposAction
+    fetchRepos: fetchReposAction,
+    sortReposBy: sortReposByAction
+
 }, dispatch);
 
 export default connect(

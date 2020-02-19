@@ -38,7 +38,7 @@ class VersionControlService
         return $this->getAdapter($command->getVersionControl())->getForks($command->getUserName(), $command->getRepoName());
     }
 
-    private function getAdapter(string $name)
+    private function getAdapter(string $name): VersionControlAdapter
     {
         return $this->versionControlAdapterFactory->createByName($name);
     }

@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form"
 import * as sortTypes from "./sortTypes";
-import {fetchReposAction} from "../../repo/functions/reposFunctions";
+import {fetchReposAction, sortReposByAction} from "../../repo/functions/reposFunctions";
 import {connect} from "react-redux";
 import {getSortReposBy} from "../../repo/reducers";
 
@@ -42,7 +42,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        sortRepos: (sortType) => dispatch(getSortReposBy(sortType))
+        sortRepos: (sortType) => dispatch(sortReposByAction(sortType))
     }
 }
 

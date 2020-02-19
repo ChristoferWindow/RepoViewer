@@ -12,7 +12,7 @@ class Repo extends React.Component {
            <Card>
                <RepoHeader
                    name = {this.props.repo.name}
-                   owner = {this.props.repo.owner.login}
+                   owner = {this.props.repo.owner.ownerLogin}
                    isFork = {this.props.repo.fork}
                    forksCount = {this.props.repo.forksCount}
                    eventKey = {this.props.eventKey}

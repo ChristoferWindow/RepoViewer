@@ -11,16 +11,16 @@ use MyCLabs\Enum\Enum;
  * @package App\Domain\VersionControl
  *
  * @method static GitHubEnums GITHUB_API_URL()
- * @method static GitHubEnums GITHUB_USERS_URL()
- * @method static GitHubEnums GITHUB_REPOS_URL()
- * @method static GitHubEnums GITHUB_FORKS_URL()
- * @method static GitHubEnums GITHUB_LANGUAGES_URL()
+ * @method static GitHubEnums GITHUB_USER_REPOS_URL()
+ * @method static GitHubEnums GITHUB_USER_REPO_URL()
+ * @method static GitHubEnums GITHUB_USER_REPO_LANGUAGES_URL()
+ * @method static GitHubEnums GITHUB_USER_REPO_FORKS_URL()
  */
 class GitHubEnums extends Enum
 {
     private const GITHUB_API_URL = 'https://api.github.com';
-    private const GITHUB_USERS_URL = 'users';
-    private const GITHUB_REPOS_URL = 'repos';
-    private const GITHUB_FORKS_URL = 'forks';
-    private const GITHUB_LANGUAGES_URL = 'languages';
+    private const GITHUB_USER_REPOS_URL = self::GITHUB_API_URL . '/users/%s/repos';
+    private const GITHUB_USER_REPO_URL = self::GITHUB_API_URL . '/repos/%s/%s';
+    private const GITHUB_USER_REPO_LANGUAGES_URL = self::GITHUB_USER_REPO_URL . '/languages';
+    private const GITHUB_USER_REPO_FORKS_URL = self::GITHUB_USER_REPO_URL . '/forks';
 }

@@ -17,12 +17,7 @@ class GithubVersionControlAdapter extends VersionControlAdapter
 {
     public function getRepos(VersionControlQuery $query):array
     {
-        $url = $this->createUrl([
-            GitHubEnums::GITHUB_API_URL()->getValue(),
-            GitHubEnums::GITHUB_USERS_URL()->getValue(),
-            $query->getUserName(),
-            GitHubEnums::GITHUB_REPOS_URL()->getValue(),
-        ]);
+        $url = sprintf(GitHubEnums::GITHUB_USER_REPOS_URL()->getValue(), $query->getUserName());
 
         $request =  $this->apiClient->request('GET', $url)->toArray();
 
@@ -44,15 +39,7 @@ class GithubVersionControlAdapter extends VersionControlAdapter
 
     public function getRepo(VersionControlQuery $query): array
     {
-        $userName = $query->getUserName();
-        $repoName = $query->getRepoName();
-
-        $url = $this->createUrl([
-            GitHubEnums::GITHUB_API_URL()->getValue(),
-            GitHubEnums::GITHUB_REPOS_URL()->getValue(),
-            $userName,
-            $repoName,
-        ]);
+        $url = sprintf(GitHubEnums::GITHUB_USER_REPO_URL()->getValue(), $query->getUserName(), $query->getRepoName());
 
         $request =  $this->apiClient->request('GET', $url)->toArray();
 
@@ -65,26 +52,21 @@ class GithubVersionControlAdapter extends VersionControlAdapter
             $parent = $this->getParentData($request['name'], $request['parent']['owner']['login']);
         }
 
-        $langugaes = $this->getLanguages($userName, $repoName);
+        $languages = $this->getLanguages($query);
 
         $response = [
             'name' => $request['name'],
             'owner' => $owner,
             'fork' => $fork,
             'parent' => $parent,
-            'languages' => $langugaes,
+            'languages' => $languages,
         ];
 
         return $response;
     }
-    public function getForks(VersionControlQuery $query):array{
-        $url = $this->createUrl([
-            GitHubEnums::GITHUB_API_URL()->getValue(),
-            GitHubEnums::GITHUB_REPOS_URL()->getValue(),
-            $query->getUserName(),
-            $query->getRepoName(),
-            GitHubEnums::GITHUB_FORKS_URL()->getValue(),
-        ]);
+    public function getForks(VersionControlQuery $query):array
+    {
+        $url = sprintf(GitHubEnums::GITHUB_USER_REPO_FORKS_URL()->getValue(), $query->getUserName(), $query->getRepoName());
 
         $request =  $this->apiClient->request('GET', $url)->toArray();
 
@@ -100,15 +82,9 @@ class GithubVersionControlAdapter extends VersionControlAdapter
         return $response;
     }
 
-    public function getLanguages(string $userName, string $repoName): array
+    public function getLanguages(VersionControlQuery $query): array
     {
-        $url = $this->createUrl([
-            GitHubEnums::GITHUB_API_URL()->getValue(),
-            GitHubEnums::GITHUB_REPOS_URL()->getValue(),
-            $userName,
-            $repoName,
-            GitHubEnums::GITHUB_LANGUAGES_URL()->getValue(),
-        ]);
+        $url = sprintf(GitHubEnums::GITHUB_USER_REPO_LANGUAGES_URL()->getValue(), $query->getUserName(), $query->getRepoName());
 
         $request =  $this->apiClient->request('GET', $url)->toArray();
 
@@ -134,11 +110,6 @@ class GithubVersionControlAdapter extends VersionControlAdapter
                 throw new InvalidResponse('We could not process your request');
                 break;
         }
-    }
-
-    public function getRepoDetails()
-    {
-
     }
 
     private function getParentData(string $userName, string $repoName)

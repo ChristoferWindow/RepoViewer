@@ -67,11 +67,8 @@ class ReposList extends React.Component {
         if (Array.isArray(repos)) {
             let reposSorted = repos
             const sort = this.props.sortBy
-            console.log(sort);
-
-            /** TODO sorting functions on redux dispatch **/
+            
             if (sort && null !== sort) {
-                console.log('inside');
                 switch (sort) {
                     case SORT_BY_FORKS_COUNT_ASC:
                         reposSorted = repos.slice().sort( (a, b) => {return a.forksCount - b.forksCount})

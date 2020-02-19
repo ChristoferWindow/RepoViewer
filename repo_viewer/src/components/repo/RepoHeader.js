@@ -21,9 +21,6 @@ class RepoHeader extends React.Component {
                     <Col className={"text-center"}>{this.props.isFork ? 'yes' : 'no'}</Col>
                     <Col className={"text-center"}>{this.props.forksCount}</Col>
                 </Row>
-
-
-
             </Accordion.Toggle>
         );
     }

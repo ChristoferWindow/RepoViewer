@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Controller;
 
 use App\Domain\VersionControl\VersionControlQuery;
@@ -53,15 +52,4 @@ class RepoController extends AbstractController
         $query = new VersionControlQuery($versionControl, $userName, $repoName);
         return $this->json($this->service->getForks($query));
     }
-
-    /**
-     * @Get("/{versionControl}/users/{userName}/repos/{repoName}/parent", name="get_parent")
-     */
-    public function getForkParent(string $versionControl, string $userName, string $repoName): Response
-    {
-        $query = new VersionControlQuery($versionControl, $userName, $repoName);
-        return $this->json($this->service->getForkParent($query));
-    }
-
-
 }

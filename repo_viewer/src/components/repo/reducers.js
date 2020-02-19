@@ -2,13 +2,16 @@
 
 import * as types from "./consts/actionTypes";
 
-const initialState = {
+const reposInitialState = {
     pending: false,
     repos: [],
     error: null,
 }
 
-export function reposReducer(state = initialState, action) {
+const reposDetailsInitialState = {
+
+}
+export function reposReducer(state = reposInitialState, action) {
     switch(action.type) {
         case types.FETCH_REPOS_PENDING:
             return {
@@ -36,7 +39,7 @@ export function reposReducer(state = initialState, action) {
 }
 
 /** TODO fix saving repoDetails, to save it to store as [{repoName: repoDetails}] **/
-export function reposDetailsReducer(state = initialState, action) {
+export function reposDetailsReducer(state = [], action) {
     switch(action.type) {
         case types.FETCH_REPO_DETAILS_PENDING:
             return {
@@ -45,12 +48,13 @@ export function reposDetailsReducer(state = initialState, action) {
                 error: false
             }
         case types.FETCH_REPO_DETAILS_SUCCESS:
-            return {
+            return [
                 ...state,
-                pending: false,
-                error: false,
-                repos: {repoName : action.repoName, repoDetails: action.repoDetails}
-            }
+                {
+                    repoName: action.repoName,
+                    repoDetails: action.repoDetails
+                }
+            ]
         case types.FETCH_REPO_DETAILS_ERROR:
             return {
                 ...state,

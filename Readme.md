@@ -3,7 +3,7 @@ SETUP:
 In root folder run:
     composer install && php bin/console server:run
 In repo_viewer folder run
-    npm init && npm start
+    npm install && npm start
 
 API Routing:
 
